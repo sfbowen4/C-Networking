@@ -9,7 +9,6 @@
 
 int main() {
 
-
     char server_message[] = "You have reached the server! \n";
 
     // create the server socket
@@ -31,10 +30,12 @@ int main() {
     client_socket = accept(server_socket, NULL, NULL);
 
     int count = 0;
+    char response[256];
     while(count < 10) {
     // send the message
     printf("bytes = %ld\n", send(client_socket, server_message, sizeof(server_message), 0));
-
+    recv(client_socket, response, sizeof(response), 0);
+    printf("Response: %s\n", response);
     count++;
     }
 
